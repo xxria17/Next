@@ -152,13 +152,12 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@drawable/background_button"
-            android:backgroundTint="@color/main_blue"
+            style="@style/ButtonStyle"
             android:text="주문하기" />
     </LinearLayout>
 </layout>
