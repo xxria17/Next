@@ -8,6 +8,20 @@
         android:id="@+id/introFragment"
         android:label="fragment_intro"
         android:name="toss.next.dhxxn17.next2023.view.intro.IntroFragment"
-        toos:layout="@layout/fragment_intro"/>
+        toos:layout="@layout/fragment_intro">
+
+        <action
+            android:id="@+id/action_to_list"
+            app:destination="@+id/listFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:label="fragment_list"
+        android:name="toss.next.dhxxn17.next2023.view.list.ListFragment"
+        toos:layout="@layout/fragment_list">
+
+    </fragment>
 
 </navigation>
