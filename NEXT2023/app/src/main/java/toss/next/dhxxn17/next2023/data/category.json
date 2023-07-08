@@ -1,0 +1,20 @@
+{
+  "category": [
+    {
+      "category": "Coffee",
+      "order": 1
+    },
+    {
+      "category": "Beverage",
+      "order": 2
+    },
+    {
+      "category": "Tea",
+      "order": 3
+    },
+    {
+      "category": "Dessert",
+      "order": 4
+    }
+  ]
+}
