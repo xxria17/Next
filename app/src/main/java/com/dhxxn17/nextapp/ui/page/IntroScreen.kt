@@ -13,11 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.dhxxn17.nextapp.ui.Screens
+import com.dhxxn17.nextapp.ui.navigation.Screens
 import com.dhxxn17.nextapp.ui.theme.MainBlue
 import com.dhxxn17.nextapp.ui.theme.MainGray
 

@@ -1,4 +1,4 @@
-package com.dhxxn17.nextapp.ui
+package com.dhxxn17.nextapp.ui.navigation
 
 sealed class Screens(
     val route: String
