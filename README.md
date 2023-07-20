@@ -1,10 +1,11 @@
-# Next - Test
+# Next💬
 
 
-### ✔️ Screens
+### 📱 Screens
 
 
-### ✔️ Skills
+### 🔨 Skills
+- Kotlin
 - Jetpack Compose
 - Compose Navigation
-- 
+
