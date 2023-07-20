@@ -1,12 +1,9 @@
 package com.dhxxn17.nextapp.ui.page
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.dhxxn17.nextapp.ui.navigation.Screens
-import com.dhxxn17.nextapp.ui.theme.MainBlue
+import com.dhxxn17.nextapp.ui.theme.BaseButton
 import com.dhxxn17.nextapp.ui.theme.MainGray
 
 @Composable
@@ -25,7 +22,8 @@ fun IntroScreen(
     navController: NavController
 ) {
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .background(Color.White)
     ) {
         Text(
@@ -37,24 +35,14 @@ fun IntroScreen(
             lineHeight = 33.sp
         )
 
-        Box(
-            modifier = Modifier.padding(20.dp)
-                .fillMaxWidth()
-                .background(MainBlue, shape = RoundedCornerShape(10.dp))
-                .clickable {
-                    navController.navigate(
-                        Screens.ListScreen.route
-                    )
-                }
-                .padding(15.dp)
-                .align(Alignment.BottomCenter),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "다음",
-                fontSize = 17.sp,
-                color = Color.White
-            )
-        }
+        BaseButton(
+            onClick = {
+                navController.navigate(
+                    Screens.ListScreen.route
+                )
+            },
+            buttonTitle = "다음",
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
     }
 }

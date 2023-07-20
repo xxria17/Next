@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.dhxxn17.nextapp.data.MenuData
 import com.dhxxn17.nextapp.ui.navigation.Screens
 import com.dhxxn17.nextapp.ui.theme.NextAppTheme
 
@@ -54,7 +56,12 @@ class MainActivity : ComponentActivity() {
                 ListScreen(navController)
             }
             composable(Screens.OrderScreen.route) {
-                OrderScreen(navController)
+                val data = remember {
+                    navController.previousBackStackEntry?.savedStateHandle?.get<MenuData>("menu")
+                }
+                if (data != null) {
+                    OrderScreen(navController, data)
+                }
             }
             composable(Screens.CompleteScreen.route) {
                 CompleteScreen(navController)

@@ -1,5 +1,6 @@
 package com.dhxxn17.nextapp.ui.page
 
+import android.os.Bundle
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -97,6 +98,7 @@ fun ListContent(navController: NavController) {
                     MenuItem(
                         menu = _menu,
                         onClick = {
+                            navController.currentBackStackEntry?.savedStateHandle?.set(key = "menu", value = it)
                             navController.navigate(
                                 Screens.OrderScreen.route
                             )
