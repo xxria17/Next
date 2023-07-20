@@ -64,7 +64,12 @@ class MainActivity : ComponentActivity() {
                 }
             }
             composable(Screens.CompleteScreen.route) {
-                CompleteScreen(navController)
+                val data = remember {
+                    navController.previousBackStackEntry?.savedStateHandle?.get<MenuData>("menu")
+                }
+                if (data != null) {
+                    CompleteScreen(navController, data)
+                }
             }
         }
     }

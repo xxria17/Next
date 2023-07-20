@@ -130,6 +130,17 @@ fun OrderScreen(
 
         BaseButton(
             onClick = {
+                navController.currentBackStackEntry?.savedStateHandle?.set(
+                    key = "menu",
+                    value = MenuData(
+                        name = menu.name,
+                        price = menu.price,
+                        category = menu.category,
+                        isHot = isHot,
+                        isDecaffein = isDecaffein,
+                        iceAmount = iceAmount
+                    )
+                )
                 navController.navigate(
                     Screens.CompleteScreen.route
                 )

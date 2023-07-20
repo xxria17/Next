@@ -9,7 +9,8 @@ data class MenuData(
     val price: Int,
     val category: Category,
     val isHot: IS_HOT,
-    val isDecaffein: IS_DECAFFEIN
+    val isDecaffein: IS_DECAFFEIN,
+    val iceAmount: ICE_AMOUNT = ICE_AMOUNT.CANT_CHOOSE
 ) : Parcelable
 
 enum class Category(val order: Int) {
