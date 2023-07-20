@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.dhxxn17.nextapp.R
 import com.dhxxn17.nextapp.data.Category
+import com.dhxxn17.nextapp.data.IS_DECAFFEIN
+import com.dhxxn17.nextapp.data.IS_HOT
 import com.dhxxn17.nextapp.data.MenuData
 import com.dhxxn17.nextapp.ui.navigation.Screens
 import com.dhxxn17.nextapp.ui.theme.MainGray
@@ -53,8 +55,8 @@ fun ListContent(navController: NavController) {
             name = jsonObject.getString("menu"),
             category = stringToCategory(jsonObject.getString("category")),
             price = jsonObject.getInt("price"),
-            isHot = jsonObject.getBoolean("can_hot"),
-            isDecaffein = jsonObject.getBoolean("can_Decaffein")
+            isHot = if (jsonObject.getBoolean("can_hot")) IS_HOT.NONE else IS_HOT.CANT_CHOOSE,
+            isDecaffein = if (jsonObject.getBoolean("can_Decaffein")) IS_DECAFFEIN.NONE else IS_DECAFFEIN.CANT_CHOOSE
         )
 
         menuList.add(menuData)
