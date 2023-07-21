@@ -119,13 +119,12 @@ fun MenuHeaderItem(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.LightGray)
+            .background(Color(0xffdedede))
             .padding(7.dp)
     ) {
         Text(
             text = category.name,
             fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
             color = MainGray
         )
     }

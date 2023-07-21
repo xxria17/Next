@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.dhxxn17.nextapp.R
 import com.dhxxn17.nextapp.data.ICE_AMOUNT
+import com.dhxxn17.nextapp.data.IS_DECAFFEIN
+import com.dhxxn17.nextapp.data.IS_HOT
 import com.dhxxn17.nextapp.data.MenuData
 import com.dhxxn17.nextapp.ui.navigation.Screens
 import com.dhxxn17.nextapp.ui.theme.BaseButton
@@ -78,7 +80,9 @@ fun CompleteScreen(
                     )
 
                     Text(
-                        text = "${menu.isHot.name}/${menu.isDecaffein.title}/${if (menu.iceAmount != ICE_AMOUNT.CANT_CHOOSE && menu.iceAmount != ICE_AMOUNT.NONE) "얼음(${menu.iceAmount.title})" else ""}",
+                        text = (if (menu.isHot != IS_HOT.CANT_CHOOSE && menu.isHot != IS_HOT.NONE) "${menu.isHot.name}/" else "") +
+                                (if(menu.isDecaffein != IS_DECAFFEIN.CANT_CHOOSE && menu.isDecaffein != IS_DECAFFEIN.NONE) menu.isDecaffein.title else "") +
+                                if (menu.iceAmount != ICE_AMOUNT.CANT_CHOOSE && menu.iceAmount != ICE_AMOUNT.NONE) "/얼음(${menu.iceAmount.title})" else "",
                         fontSize = 16.sp,
                         color = MainGray,
                         modifier = Modifier.padding(top = 5.dp)
@@ -91,7 +95,9 @@ fun CompleteScreen(
                     fontWeight = FontWeight.Bold,
                     color = MainGray,
                     textAlign = TextAlign.End,
-                    modifier = Modifier.padding(end = 20.dp).weight(1f)
+                    modifier = Modifier
+                        .padding(end = 20.dp)
+                        .weight(1f)
                         .align(Alignment.CenterVertically)
                 )
             }

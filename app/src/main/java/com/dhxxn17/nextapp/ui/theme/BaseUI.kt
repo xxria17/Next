@@ -18,12 +18,16 @@ import androidx.compose.ui.unit.sp
 fun BaseButton(
     onClick: () -> Unit,
     buttonTitle: String,
-    modifier: Modifier
+    modifier: Modifier,
+    isEnabled: Boolean = true
 ) {
     Box(
         modifier = modifier.padding(20.dp)
             .fillMaxWidth()
-            .background(MainBlue, shape = RoundedCornerShape(10.dp))
+            .background(
+                if (isEnabled) MainBlue else Color(0xffdedede),
+                shape = RoundedCornerShape(10.dp)
+            )
             .clickable {
                 onClick.invoke()
             }
@@ -33,7 +37,7 @@ fun BaseButton(
         Text(
             text = buttonTitle,
             fontSize = 17.sp,
-            color = Color.White
+            color = if (isEnabled) Color.White else MainGray
         )
     }
 }

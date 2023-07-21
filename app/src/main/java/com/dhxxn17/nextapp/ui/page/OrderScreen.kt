@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,6 +32,7 @@ import com.dhxxn17.nextapp.data.ICE_AMOUNT
 import com.dhxxn17.nextapp.data.IS_DECAFFEIN
 import com.dhxxn17.nextapp.data.IS_HOT
 import com.dhxxn17.nextapp.data.MenuData
+import com.dhxxn17.nextapp.data.Option
 import com.dhxxn17.nextapp.ui.navigation.Screens
 import com.dhxxn17.nextapp.ui.theme.BaseButton
 import com.dhxxn17.nextapp.ui.theme.MainGray
@@ -50,7 +52,7 @@ fun OrderScreen(
     }
 
     var iceAmount by remember {
-        mutableStateOf(ICE_AMOUNT.NONE)
+        mutableStateOf(ICE_AMOUNT.CANT_CHOOSE)
     }
 
     Box(
@@ -62,13 +64,13 @@ fun OrderScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White)
-                .padding(horizontal = 10.dp)
+                .padding(horizontal = 20.dp)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_back),
                 contentDescription = "뒤로가기 버튼",
                 modifier = Modifier
-                    .padding(top = 20.dp, start = 10.dp)
+                    .padding(top = 20.dp)
                     .size(20.dp)
                     .clickable {
                         navController.popBackStack()
@@ -101,6 +103,10 @@ fun OrderScreen(
                     currentState = isHot,
                     onClick = {
                         isHot = (it as? IS_HOT) ?: IS_HOT.NONE
+
+                        if (isHot == IS_HOT.COLD) {
+                            iceAmount = ICE_AMOUNT.NONE
+                        }
                     }
                 )
             }
@@ -146,7 +152,10 @@ fun OrderScreen(
                 )
             },
             buttonTitle = "주문하기",
-            modifier = Modifier.align(Alignment.BottomCenter)
+            modifier = Modifier.align(Alignment.BottomCenter),
+            isEnabled = (isHot != IS_HOT.NONE || isHot == IS_HOT.CANT_CHOOSE)
+                    && (isDecaffein != IS_DECAFFEIN.NONE || isDecaffein == IS_DECAFFEIN.CANT_CHOOSE)
+                    && (iceAmount != ICE_AMOUNT.NONE || iceAmount == ICE_AMOUNT.CANT_CHOOSE)
         )
     }
 
@@ -155,12 +164,14 @@ fun OrderScreen(
 @Composable
 fun SelectOption(
     title: String,
-    options: List<Any>,
+    options: List<Option>,
     currentState: Any,
-    onClick: (Any) -> Unit
+    onClick: (Option) -> Unit
 ) {
     Column(
-        modifier = Modifier.padding(vertical = 15.dp).fillMaxWidth()
+        modifier = Modifier
+            .padding(vertical = 25.dp)
+            .fillMaxWidth()
     ) {
         Text(
             text = title,
@@ -199,17 +210,19 @@ fun SelectOption(
 
 @Composable
 fun OptionItem(
-    type: Any,
+    type: Option,
     text: String,
     modifier: Modifier,
     isSelected: Boolean,
-    onClick: (Any) -> Unit
+    onClick: (Option) -> Unit
 ) {
     Box(
         modifier = modifier
             .padding(3.dp)
             .background(
-                if (isSelected) Color.Black else Color.LightGray, shape = RoundedCornerShape(10.dp))
+                if (isSelected) Color.Black else Color(0xffdedede),
+                shape = RoundedCornerShape(10.dp)
+            )
             .clickable {
                 onClick.invoke(type)
             }
@@ -218,8 +231,7 @@ fun OptionItem(
         Text(
             text = text,
             fontSize = 17.sp,
-            color = if (isSelected) Color.White else MainGray,
-            fontWeight = FontWeight.Bold
+            color = if (isSelected) Color.White else MainGray
         )
     }
 }

@@ -19,29 +19,3 @@ enum class Category(val order: Int) {
     TEA(3),
     DESSERT(4)
 }
-
-enum class IS_HOT {
-    CANT_CHOOSE,
-    HOT,
-    COLD,
-    NONE
-}
-
-enum class IS_DECAFFEIN(
-    val title: String
-) {
-    CANT_CHOOSE("선택불가"),
-    CAFFEIN("카페인"),
-    DECAFFEIN("디카페인"),
-    NONE("미선택")
-}
-
-enum class ICE_AMOUNT(
-    val title: String
-) {
-    CANT_CHOOSE("선택불가"),
-    LESS("적게"),
-    REGULAR("보통"),
-    MANY("많이"),
-    NONE("미선택")
-}
